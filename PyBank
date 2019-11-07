@@ -1,13 +1,1 @@
-# Create a Python script for PyrBank that analyzes the records to calculate each of the following:
-# First I must import dependencies
 
-import os
-import csv
-
-import pandas as pd
-
-# Store filepath in a variable
-Py_Bank_Path = "C:/Users/dbruen/Documents/Data Analytics/CU Bootcamp Homework/03 Python HW/budget.csv"
-
-pybank_df = pd.read_csv(Py_Bank_Path)
-pybank_df.head()
