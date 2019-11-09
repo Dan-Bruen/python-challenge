@@ -8,7 +8,6 @@ budget_data_csv = os.path.join('.', 'Resources', 'budget_data.csv')
 text_path = "output.txt"
 
 # now improve the reading using the csv module
-csv
 
 with open(budget_data_csv, newline="") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
@@ -42,19 +41,21 @@ with open(budget_data_csv) as csvfile:
         # average of the changes in "Profit/Losses" over the entire period
         profit_change = float(row["Profit/Losses"]) - previous_profit
         previous_profit = float(row["Profit/Losses"])
-        profit_change_list = profit_change_list + [profit_change]
-        month_of_change = [month_of_change] [row["Date"]]
+        profit_change_list.append(profit_change)
+        month_of_change.append(row["Date"])
         
         # Greatest increase in profits (date and amount) over the entire period
-        if profit_change>greatest_profit_increase[1]:
-            greatest_profit_increase[1] = profit_change
-            greatest_profit_increase[0] = row["Date"]
+        # if profit_change>greatest_profit_increase[1]:
+        #     greatest_profit_increase[1] = profit_change
+        #     greatest_profit_increase[0] = row["Date"]
 
         # Greatest decrease in profits (date and amount) over the entire period
-        if profit_change<greatest_profit_decrease[1]:
-            greatest_profit_decrease[1] = profit_change
-            greatest_profit_decrease[0] = row["Date"]
-
-    profit_avg = [sum(profit_change)/len(profit_change_list)]
+        # if profit_change<greatest_profit_decrease[1]:
+        #     greatest_profit_decrease[1] = profit_change
+        #     greatest_profit_decrease[0] = row["Date"]
+    maximum_profit = max(profit_change_list)
+    month_index = profit_change_list.index(maximum_profit)
+    maximum_month = month_of_change[month_index]
+    profit_avg = sum(profit_change_list)/len(profit_change_list)
 
     print(profit_avg)
