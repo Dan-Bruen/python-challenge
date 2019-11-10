@@ -43,19 +43,42 @@ with open(budget_data_csv) as csvfile:
         previous_profit = float(row["Profit/Losses"])
         profit_change_list.append(profit_change)
         month_of_change.append(row["Date"])
-        
-        # Greatest increase in profits (date and amount) over the entire period
-        # if profit_change>greatest_profit_increase[1]:
-        #     greatest_profit_increase[1] = profit_change
-        #     greatest_profit_increase[0] = row["Date"]
+    
+    profit_avg = sum(profit_change_list)/len(profit_change_list)
 
-        # Greatest decrease in profits (date and amount) over the entire period
-        # if profit_change<greatest_profit_decrease[1]:
-        #     greatest_profit_decrease[1] = profit_change
-        #     greatest_profit_decrease[0] = row["Date"]
+        # Greatest increase in profits (date and amount) over the entire period
     maximum_profit = max(profit_change_list)
     month_index = profit_change_list.index(maximum_profit)
     maximum_month = month_of_change[month_index]
-    profit_avg = sum(profit_change_list)/len(profit_change_list)
+    
 
-    print(profit_avg)
+        # Greatest decrease in profits (date and amount) over the entire period
+    minimum_profit = min(profit_change_list)
+    month_index = profit_change_list.index(minimum_profit)
+    minimum_month = month_of_change[month_index]
+    
+#Print the summnary of my financial analysis...
+
+print("Financial Analysis")
+print("_________________________")
+print(f"Total Months: {total_months}")
+print(f"Total: ${total_profit}")
+print(f"Average Change: ${profit_avg}")
+print(f"Greatest Increase in Profits: {maximum_month} (${maximum_profit})")
+print(f"Greatest Decrease in Profits: {minimum_month} (${minimum_profit})")
+
+# Export a text file with the results...
+text_path = "output.txt"
+saved_file = budget_data_csv.strip(".csv") + text_path
+file_path = os.path.join(".", saved_file)
+with open(file_path, "w") as text:
+    text.write("Financial Analysis")
+    text.write("_________________________")
+    text.write(f"Total Months: {total_months}")
+    text.write(f"Total: ${total_profit}")
+    text.write(f"Average Change: ${profit_avg}")
+    text.write(f"Greatest Increase in Profits: {maximum_month} (${maximum_profit})")
+    text.write(f"Greatest Decrease in Profits: {minimum_month} (${minimum_profit})")
+
+
+
