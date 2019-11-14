@@ -34,10 +34,10 @@ with open(election_data_csv, newline="") as csvfile:
             Li_votes +=1
 
 # The percentage of votes each candidate won
-Khan_percent = Khan_votes/total_votes
-Correy_percent = Correy_votes/total_votes
-Li_percent = Li_votes/total_votes
-OTooley_percent = OTooley_votes/total_votes
+Khan_percent = (Khan_votes/total_votes)*100
+Correy_percent = (Correy_votes/total_votes)*100
+Li_percent = (Li_votes/total_vote)*100
+OTooley_percent = (OTooley_votes/total_votes)*100
 
 # A complete list of candidates who received votes
 candidate_list = ["Khan", "Correy", "Li", "O'Tooley"]
@@ -87,15 +87,15 @@ text_path = "output.txt"
 saved_file = election_data_csv.strip(".csv") + text_path
 file_path = os.path.join(".", saved_file)
 with open(file_path, "w") as text:
-    text.write("Election Results")
+    text.write("Election Results/n")
+    text.write("_________________________/n")
+    text.write(f"Total Votes: {total_votes}/n")
     text.write("_________________________")
-    text.write(f"Total Votes: {total_votes}")
-    text.write("_________________________")
-    text.write(f"Khan: {Khan_percent} {Khan_votes}")
-    text.write(f"Correy: {Correy_percent} {Correy_votes}")
+    text.write(f"Khan: {Khan_percent} {Khan_votes}/n")
+    text.write(f"Correy: {Correy_percent} {Correy_votes}/n")
     text.write(f"Li: {Li_percent} {Li_votes}")
-    text.write(f"O'Tooley: {OTooley_percent} {OTooley_votes}")
-    text.write("_____________________")
-    text.write(f"Winnder: Khan")
-    text.write("_____________________")
+    text.write(f"O'Tooley: {OTooley_percent} {OTooley_votes}/n")
+    text.write("_____________________/n")
+    text.write(f"Winner: Khan/n")
+    text.write("_____________________/n")
     
